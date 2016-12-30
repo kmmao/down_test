@@ -29,7 +29,7 @@ class MyHandler(FileSystemEventHandler):
                             })
                 os.remove(event.src_path)
                 print("已将新文件放进mongodb")
-            except OSError:
+            except IOError:
                 pass
 
 if __name__ == "__main__":
