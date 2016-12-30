@@ -1,0 +1,5 @@
+--index-url https://pypi.douban.com/simple/
+scrapy
+watchdog
+pymongo
+scrapy-redis
