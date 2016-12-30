@@ -6,6 +6,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 from fdfs_client.client import Fdfs_client
+from fdfs_client.exceptions import DataError
 
 
 client = Fdfs_client('client.conf')
@@ -22,8 +23,8 @@ class MyHandler(FileSystemEventHandler):
                 print("检测到生成新文件")
                 client.upload_by_filename(event.src_path)
                 os.remove(event.src_path)
-                print("已将新文件放进mongodb")
-            except IOError:
+                print("已将新文件放进fdfs")
+            except DataError:
                 pass
 
 if __name__ == "__main__":
