@@ -1,0 +1,61 @@
+
+
+实验一:
+
+A服务器  搭建要模拟要爬取的网站 使用nginx 
+
+B服务器 单核 虚拟机
+CPU: Intel(R) Core(TM) i3-4170 CPU @ 3.70GHz
+内存: 1G
+
+种子爬虫 使用scrapy 从模拟网站爬取, 分发种子， 数量一个
+
+案例爬虫 scrapy 页码速度(pages/min) 3324 3279 3353, 数量一个
+
+monitor.py 监控新文件生成，搬进缓冲区 
+
+scrapy io write操作  12MB/s  12000 / 200 * 60
+
+cpu 占用比 scrapy(70%) monitor(20%)
+内存 占用 500MB/990MB
+
+C服务器 四核 虚拟机
+mongodb io write 操作 10MB~20MB/s 10MB ~ 20MB 之间
+
+总结：
+文件能及时转移到 mongodb 上
+
+
+实验二:
+
+A服务器  搭建要模拟要爬取的网站 使用nginx 
+
+B服务器 单核 虚拟机
+CPU: Intel(R) Core(TM) i3-4170 CPU @ 3.70GHz
+内存: 1G
+
+种子爬虫 使用scrapy 从模拟网站爬取, 分发种子， 数量一个
+
+案例爬虫 scrapy 页码速度(pages/min) 3324 3279 3353, 数量一个
+
+monitor.py 监控新文件生成，搬进缓冲区 
+
+scrapy io write操作  12MB/s  12000 / 200 * 60
+
+cpu 占用比 scrapy(70%) monitor(20%)
+内存 占用 500MB/990MB
+
+C服务器 四核 虚拟机
+一个fdfs_trackerd, 一个fdfs_storaged
+fastdfs_storaged io write 操作 0MB~5MB/s 0MB ~ 5MB 之间
+
+总结：
+文件没能及时转移到 fastdfs 上
+
+
+
+
+
+
+
+
