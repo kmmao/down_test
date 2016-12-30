@@ -20,15 +20,17 @@ class MyHandler(FileSystemEventHandler):
 
     def on_modified(self,event):
         if not event.is_directory:
-            print("检测到生成新文件")
-            collection.insert_one(
-                    {
-                        'path': event.src_path,
-                        'content': open(event.src_path, 'r').read()
-                        })
-            os.remove(event.src_path)
-            print("已将新文件放进mongodb")
-
+            try:
+                print("检测到生成新文件")
+                collection.insert_one(
+                        {
+                            'path': event.src_path,
+                            'content': open(event.src_path, 'r').read()
+                            })
+                os.remove(event.src_path)
+                print("已将新文件放进mongodb")
+            except OSError:
+                pass
 
 if __name__ == "__main__":
     event_handler = MyHandler()
